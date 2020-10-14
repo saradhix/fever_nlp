@@ -1,3 +1,7 @@
 **swp
 **jsonl
 **zip
+**h5
+**pickle
+__pycache__/**
+**txt

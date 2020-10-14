@@ -1,6 +1,7 @@
 import sys
 import json
 from tqdm import tqdm
+from random import sample
 
 
 def load_wiki_data(filename):
@@ -23,6 +24,7 @@ def load_wiki_data(filename):
 def get_training_data(wiki_dict):
     X_all = []
     y_all = []
+    all_evidences=[] #Use this for sampling refute class labels
     train_file = 'train.jsonl'
     fp = open(train_file, 'r')
     for line in fp:
@@ -42,8 +44,17 @@ def get_training_data(wiki_dict):
                         #print(label, claim, page_id, evidence_sentence)
                         X_all.append((claim, evidence_sentence))
                         y_all.append(label)
+                        all_evidences.append(evidence_sentence)
                     except:
                         continue
+        else:
+            label = obj['label']
+            claim = obj['claim']
+            #3 random evidences for NOT ENOUGH INFO
+            evidence_sentences = sample(all_evidences,k=3)
+            for evidence_sentence in evidence_sentences:
+                X_all.append((claim, evidence_sentence))
+                y_all.append(label)
     fp.close()
     return X_all, y_all
 
@@ -53,7 +64,7 @@ def main():
     X_all, y_all = get_training_data(wiki_data)
     print("Training data #X_train=", len(X_all), "#y_all", len(y_all))
     print("Generating training file")
-    fp=open("formatted_data_train.jsonl", "w")
+    fp=open("formatted_data_train_3_class.jsonl", "w")
     for (X, y) in zip(X_all, y_all):
         obj={}
         obj['claim']=X[0]

@@ -7,12 +7,12 @@ from keras.optimizers import SGD
 import sys
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-name="Neural Network(Simple Layer)"
+name="Neural Network(600D RELU)"
 model = Sequential()
 def fit_predict(X_train, y_train, X_test, y_test, model_name="default",  cr=True, cm=False):
     OPTIMIZER = 'rmsprop'
     DP=0.2
-    EPOCHS=10
+    EPOCHS=20
     VERBOSE=1
     #print("fit_predict:X-train", len(X_train), len(X_train[0]))
     #print(X_train[0])
@@ -24,7 +24,9 @@ def fit_predict(X_train, y_train, X_test, y_test, model_name="default",  cr=True
         binary=False
         loss = 'categorical_crossentropy'
 
-    model.add(Dense(300, kernel_initializer='uniform', activation='relu'))
+    model.add(Dense(600, kernel_initializer='uniform', activation='relu'))
+    model.add(Dense(600, kernel_initializer='uniform', activation='relu'))
+    model.add(Dense(600, kernel_initializer='uniform', activation='relu'))
     if not binary:
         model.add(Dense(num_classes, activation='softmax'))
     else:

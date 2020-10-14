@@ -1,5 +1,6 @@
 import json
 import sys
+import pickle
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
@@ -13,13 +14,18 @@ def pre_process(sentence):
     return sentence
 
 def get_training_data():
-    label_dict = {"SUPPORTS":0, "REFUTES": 1}
+    samples_to_use = 150000
+    label_dict = {"SUPPORTS":0, "REFUTES": 1, "NOT ENOUGH INFO": 2}
 
     X_all = []
     y_all = []
-    train_file = "formatted_data_train.jsonl"
+    count = 0
+    #train_file = "formatted_data_train.jsonl"
+    train_file = "formatted_data_train_3_class.jsonl"
     fp = open(train_file, 'r')
     for line in fp:
+        if count >= samples_to_use:
+            break
         obj = json.loads(line.strip())
         claim = pre_process(obj['claim'])
         evidence = pre_process(obj['evidence'])
@@ -27,6 +33,7 @@ def get_training_data():
         y = label_dict[obj['label']]
         X_all.append(X)
         y_all.append(y)
+        count += 1
     return X_all, y_all
 
 def main():
@@ -40,12 +47,18 @@ def main():
 
     print("Vectorizing...")
 
-    vectorizer = TfidfVectorizer(max_features=3200, strip_accents='unicode',analyzer='word', token_pattern=r'\w{1,}',ngram_range=(1,1),
+    num_tfidf_features=5000
+
+    vectorizer = TfidfVectorizer(max_features=num_tfidf_features, strip_accents='unicode',analyzer='word', token_pattern=r'\w{1,}',ngram_range=(1,1),
                                  use_idf=1,smooth_idf=1,stop_words='english',)
     vectorizer.fit(corpus)
+
+    model_pickle = "tfidf_vectorizer_"+str(num_tfidf_features)+"_features.pickle"
+    fp = open(model_pickle, 'wb')
+    pickle.dump(vectorizer, fp)
+    fp.close() #To close the pickle file
     claims_features = vectorizer.transform(claims)
     evidence_features = vectorizer.transform(evidences)
-    print("Type of claims_features=", type(claims_features))
 
     print("Shape of claims=", claims_features.shape)
     print("Shape of evidences=", evidence_features.shape)
@@ -67,7 +80,9 @@ def main():
     print("#Train=", len(X_train), len(y_train))
     print("#Test=", len(X_test), len(y_test))
 
-    nn.fit_predict(X_train, y_train, X_test, y_test)
+    classifier_model_name = "baseline_classifier_"+str(num_tfidf_features)+"_model.h5"
+
+    nn.fit_predict(X_train, y_train, X_test, y_test, classifier_model_name)
 
 
 
