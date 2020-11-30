@@ -24,6 +24,7 @@ Model notebooks - Colab Notebooks for training the models. These notebooks were 
 | InferGlove|train_infer_fasttext.py | inferfast.h5|
 | InferBERT|FEVER_InferBERT_sentence_transformers.ipynb | Directory fever_infer_bert_base_uncased|
 | InferRoBERTa|FEVER_InferRoBERTa_sentence_transformers.ipynb | Directory fever_infer_roberta|
+| End to end evaluation|FEVER_end_to_end_score.ipynb | NA|
 
 
 
