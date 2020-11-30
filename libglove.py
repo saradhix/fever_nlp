@@ -3,8 +3,7 @@ from nltk.tokenize import word_tokenize
 import numpy as np
 name='Glove 840B 300d'
 print("Loading Glove 840B Word Vectors")
-embedding_file = '../GloVe_pretrained//glove.840B.300d.txt'
-#embedding_file = '../glove.840B/glove.840B.300d.30k.txt'
+embedding_file = '/home/saradhix/GloVe_pretrained/glove.840B.300d.txt'
 def get_coefs(word,*arr): return word, np.asarray(arr, dtype='float32')
 embeddings_index = dict(get_coefs(*o.split(" ")) for o in tqdm(open(embedding_file),total=2196017))
 #max_features=len(embeddings_index.values()[0])

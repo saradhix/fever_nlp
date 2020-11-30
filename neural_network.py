@@ -12,7 +12,7 @@ model = Sequential()
 def fit_predict(X_train, y_train, X_test, y_test, model_name="default",  cr=True, cm=False):
     OPTIMIZER = 'rmsprop'
     DP=0.2
-    EPOCHS=10
+    EPOCHS=20
     VERBOSE=1
     #print("fit_predict:X-train", len(X_train), len(X_train[0]))
     #print(X_train[0])
