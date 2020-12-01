@@ -1,16 +1,17 @@
 import os
 import json
 import sys
-
+WIKI_FOLDER = '/datasets/wiki-dump/wiki-pages/'
+OUTPUT_FILE = '/datasets/wiki-dump/combined_replaced_pronouns'
 def get_wiki_files(folderpath):
     files = os.listdir(folderpath)
     files = [os.path.join(folderpath,x) for x in files]
     return files
 
 def main():
-    ft=open("combined_replaced_pronouns.jsonl", 'w')
+    ft=open(OUTPUT_FILE, 'w+')
     print("Hello")
-    files = get_wiki_files('wiki-pages')
+    files = get_wiki_files(WIKI_FOLDER)
     print(files)
     for filename in files:
         print("Processing file", filename)
