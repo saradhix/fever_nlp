@@ -20,8 +20,8 @@ Model notebooks - Colab Notebooks for training the models. These notebooks were 
 | NN_SUM_EMB|train_sum_embedding_model.py  | sum_embed_fasttext_classifier_model.h5|
 | Vanilla BERT|FEVER_simple_transformers_bert.ipynb  | Directory fever_bert_base_encased|
 | Vanilla RoBERTa|FEVER_simple_transformers_roberta.ipynb | Directory fever_roberta_base|
-| InferGlove|train_infer_glove.py | inferglove.h5|
-| InferGlove|train_infer_fasttext.py | inferfast.h5|
+| InferGlove|train_infer_glove.py | baseline_classifier_inferglove_model.h5|
+| InferGlove|train_infer_fasttext.py | baseline_classifier_inferfasttext_model.h5|
 | InferBERT|FEVER_InferBERT_sentence_transformers.ipynb | baseline_classifier_inferbert_model.h5|
 | InferRoBERTa|FEVER_InferRoBERTa_sentence_transformers.ipynb | baseline_classifier_infer_roberta_model.h5|
 | End to end evaluation|FEVER_end_to_end_score.ipynb | NA|
