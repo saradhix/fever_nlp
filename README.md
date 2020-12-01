@@ -10,8 +10,10 @@ Model notebooks - Colab Notebooks for training the models. These notebooks were 
 
 
 # Preprocessing the wikipedia dump
-# Running the baseline models
-# Running the notebooks
+For the scripts, just run the associated py file
+```bash
+$python process_wiki.py
+```
 # List of models and their scripts
 | Model |Script for training  |Link to the model|
 |---|---|---|
