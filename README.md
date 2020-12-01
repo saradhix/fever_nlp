@@ -22,8 +22,8 @@ Model notebooks - Colab Notebooks for training the models. These notebooks were 
 | Vanilla RoBERTa|FEVER_simple_transformers_roberta.ipynb | Directory fever_roberta_base|
 | InferGlove|train_infer_glove.py | inferglove.h5|
 | InferGlove|train_infer_fasttext.py | inferfast.h5|
-| InferBERT|FEVER_InferBERT_sentence_transformers.ipynb | Directory fever_infer_bert_base_uncased|
-| InferRoBERTa|FEVER_InferRoBERTa_sentence_transformers.ipynb | Directory fever_infer_roberta|
+| InferBERT|FEVER_InferBERT_sentence_transformers.ipynb | baseline_classifier_inferbert_model.h5|
+| InferRoBERTa|FEVER_InferRoBERTa_sentence_transformers.ipynb | baseline_classifier_infer_roberta_model.h5|
 | End to end evaluation|FEVER_end_to_end_score.ipynb | NA|
 
 
